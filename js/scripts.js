@@ -1,14 +1,51 @@
 
 // Create the canvas
-var canvas = document.createElement("canvas");
+var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
 canvas.width = 480;
 canvas.height = 222;
-document.body.appendChild(canvas);
+
 
 var options = ['rock.png','paper.png','scissor.png'];
 var srcDirName = "/rock-paper-scissors/assets/";
 
+var gamesPlayed = 0;
+
+// get rock paper scissor buttons
+var rockbtn = document.querySelector("#btn-rock");
+var paperbtn = document.querySelector("#btn-paper");
+var scissorsbtn = document.querySelector("#btn-scissors");
+
+var resetbtn = document.querySelector("#btn-reset");
+
+rockbtn.onclick =  function() {
+		player.choice = "rock";
+		state = "play";
+
+};
+
+paperbtn.onclick =  function() {
+		player.choice = "paper";
+		state = "play";
+
+};
+
+scissorsbtn.onclick =  function() {
+		player.choice = "scissor";
+		state = "play";
+
+};
+
+// Reset the game when the player presses esc
+var reset = function () {
+	player.score = 0;
+	comp.score = 0;
+	gamesPlayed = 0;
+	state = "wait";
+};
+
+
+resetbtn.onclick =  reset;
 
 
 function getImageSrc(choice)
@@ -35,23 +72,9 @@ var comp = {
 	
 };
 
-// Handle keyboard controls
-var keysDown = {};
-
-addEventListener("keydown", function (e) {
-	keysDown[e.keyCode] = true;
-}, false);
-
-addEventListener("keyup", function (e) {
-	delete keysDown[e.keyCode];
-}, false);
 
 
-// Reset the game when the player presses esc
-var reset = function () {
-	player.score = 0;
-	comp.score = 0;
-};
+
 
 var state = "start";
 
@@ -59,29 +82,10 @@ var update = function (modifier) {
 	var result = NaN;
 	
 	
-	if (state == "wait") {
-		
-		if (90 in keysDown) { // Player holding z
-			player.choice = "rock";
-			state = "play";
-		}
-		if (88 in keysDown) { // Player holding x
-			player.choice = "paper";
-			state = "play";
-		}
-		if (67 in keysDown) { // Player holding c
-			player.choice = "scissor";
-			state = "play";
-		}
-		if (192 in keysDown) { // escape
-			reset();
-			state = "start";
-		}
 	
-	}
 	
-	else if(state == "play") {
-		
+	if(state == "play") {
+		gamesPlayed++;
 		comp.choice = chooser();
 	
 		result = whoWins(player.choice, comp.choice);
@@ -96,10 +100,7 @@ var update = function (modifier) {
 	}
 	
 	else if(state == "start") {
-		if (13 in keysDown) { // Player holding zenter
-
-			state = "wait";
-		}
+		
 		
 	}
 	
@@ -111,6 +112,9 @@ var update = function (modifier) {
 	
 };
 
+
+
+/*Game logic*/
 function chooser()
 {
 	var choice = getRandomInt(0,2);
@@ -141,6 +145,19 @@ function getRandomInt(min, max) {
     return Math.floor(Math.random() * (max - min + 1)) + min;
 } 
 
+/* Game status renderer
+*/
+
+ function updateGameUI(score, game)
+ {
+	 var scoreSpan = document.querySelector("#score");
+	 var gameSpan = document.querySelector("#games");
+	 
+	 scoreSpan.innerText = "Score: "+score;
+	 gameSpan.innerText = "Game: "+game;
+	 
+	 
+ }
 
 
 function render() {
@@ -167,7 +184,7 @@ function render() {
     }
     
     
-    
+    updateGameUI(player.score, gamesPlayed);
     
 }
 

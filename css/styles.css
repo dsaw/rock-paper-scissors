@@ -1,4 +1,43 @@
-  canvas { border: 1px solid black;
+ 
+.next-choice-grp {
+	margin: 10px auto;
+	width: 17%;
+	padding: 10px;
+}
 
-            background: #eee;}
-  
+.next-choice-grp > .btn {
+	margin-right: 10px;
+	
+}
+
+.options {
+	margin: 10px auto;
+	width: 40%;
+}
+
+canvas { 
+	border: 1px solid black;
+    background: #eee;
+	
+	display: block;
+	margin: 0 auto;
+}
+
+.options > div {
+	
+	width: 33%;
+	float: left;
+	
+}
+
+#games {
+	width: 33%;
+	float: right;
+	
+}
+
+#header
+{
+	width: 20%;
+	margin: 0 auto;
+}
