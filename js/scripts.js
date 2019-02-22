@@ -6,7 +6,8 @@ canvas.width = 480;
 canvas.height = 222;
 
 
-var options = ['rock.png','paper.png','scissor.png'];
+var imageList = ['rock.png','paper.png','scissor.png'];
+var flipImageList = ['rock_flip.png','paper_flip.png','scissor_flip.png'];
 var srcDirName = "/rock-paper-scissors/assets/";
 
 var gamesPlayed = 0;
@@ -51,13 +52,25 @@ resetbtn.onclick =  reset;
 function getImageSrc(choice)
 {
 	if (choice == "rock")
-		return srcDirName + options[0];
+		return srcDirName + imageList[0];
 	else if (choice == "paper")
-		return srcDirName + options[1];
+		return srcDirName + imageList[1];
 	else
-		return srcDirName + options[2];
+		return srcDirName + imageList[2];
 	
 }
+
+function getFlipImageSrc(choice)
+{
+	if (choice == "rock")
+		return srcDirName + flipImageList[0];
+	else if (choice == "paper")
+		return srcDirName + flipImageList[1];
+	else
+		return srcDirName + flipImageList[2];
+	
+}
+
 
 // Game objects
 var player = {
@@ -179,7 +192,7 @@ function render() {
             ctx.drawImage(imgC,244,0);
         }
         
-        imgP.src = getImageSrc(player.choice);
+        imgP.src = getFlipImageSrc(player.choice);
         imgC.src = getImageSrc(comp.choice);
     }
     
