@@ -1,4 +1,5 @@
-# rock-paper-scissors
-A simple rock paper scissor game in vanilla JS using Canvas. 
+# Rock-Paper-Scissors
+A simple rock paper scissor game in vanilla JS. 
 
-* Looks really plain - needs a touch up!
+* Straightforward button press game with a button to reset.
+* Uses the Canvas API.
