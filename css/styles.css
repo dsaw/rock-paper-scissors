@@ -16,8 +16,8 @@
 }
 
 canvas { 
-	border: 1px solid black;
-    background: #eee;
+	border: 0px solid black;
+    background: #fff;
 	
 	display: block;
 	margin: 0 auto;

@@ -2,10 +2,10 @@
 // Create the canvas
 var canvas = document.querySelector("canvas");
 var ctx = canvas.getContext("2d");
-canvas.width = 480;
+canvas.width = 500;
 canvas.height = 222;
 
-
+// dimensions 236 x 222
 var imageList = ['rock.png','paper.png','scissor.png'];
 var flipImageList = ['rock_flip.png','paper_flip.png','scissor_flip.png'];
 var srcDirName = "/rock-paper-scissors/assets/";
@@ -179,6 +179,7 @@ function render() {
     
     if (canvas.getContext) {
         var ctx = canvas.getContext('2d');
+		
         var imgP = new Image();
         var imgC = new Image();
         
@@ -189,7 +190,7 @@ function render() {
         };
         
         imgC.onload = function() {
-            ctx.drawImage(imgC,244,0);
+            ctx.drawImage(imgC,264,0);
         }
         
         imgP.src = getFlipImageSrc(player.choice);
